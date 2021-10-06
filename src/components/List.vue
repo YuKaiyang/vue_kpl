@@ -13,7 +13,7 @@
         <div class="name">
           {{ item.hname !== name ? item.hname : item.gname }}
         </div>
-        <div class="score">
+        <div class="score" :class="makeClass(item, 1)">
           {{ item.hname !== name ? item.host_score : item.guest_score }}
         </div>
       </div>
@@ -53,7 +53,7 @@ export default {
           res.push(obj);
         }
       });
-      console.log(res);
+      // console.log(res);
       return res;
     },
     rest() {
@@ -67,9 +67,11 @@ export default {
     },
   },
   methods: {
-    makeClass(item) {
-      const score =
-        item.hname === this.name ? item.host_score : item.guest_score;
+    makeClass(item, type) {
+      let score = item.hname === this.name ? item.host_score : item.guest_score;
+      if (type) {
+        score = item.hname !== this.name ? item.host_score : item.guest_score;
+      }
       return score == 3 ? "win" : "";
     },
   },

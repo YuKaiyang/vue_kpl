@@ -91,7 +91,7 @@ export default {
       tar.sort((a, b) => {
         if (b.score === a.score) {
           if (b.count === a.count) {
-            return this.spc();
+            return this.spc(a, b);
           }
           return b.count - a.count;
         } else {
@@ -101,8 +101,23 @@ export default {
       console.log(tar);
       return tar;
     },
-    spc() {},
+    spc(a, b) {
+      console.log(a, b);
+      const res = this.oragin.find((v) => {
+        return (
+          (v.gname === a.name && v.hname === b.name) ||
+          (v.gname === b.name && v.hname === a.name)
+        );
+      });
+      console.log(res);
+      const as = res.hname === a.name ? res.host_score : res.guest_score;
+      const bs = res.hname === b.name ? res.host_score : res.guest_score;
+      console.log(as, bs);
+      return bs - as;
+    },
     init(arr) {
+      this.oragin = arr;
+      // console.log(arr);
       arr.forEach((obj) => {
         if (obj.match_group == "S") {
           this.dataS.push(obj);

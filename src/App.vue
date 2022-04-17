@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <h1>2021年KPL秋季赛</h1>
+    <h1>{{ season }}</h1>
     <MySelect :list="teamS" :data="dataS" title="S组" />
     <MySelect :list="teamA" :data="dataA" title="A组" />
-    <MySelect :list="teamB" :data="dataB" title="B组" />
+    <!-- <MySelect :list="teamB" :data="dataB" title="B组" /> -->
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   },
   created() {
     fetch(
-      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2021S2&stage=cgs1"
+      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2022S1&stage=cgs3"
     )
       .then((response) => response.json())
       .then((json) => this.init(json.data))
@@ -28,6 +28,7 @@ export default {
       dataS: [],
       dataA: [],
       dataB: [],
+      season: "",
     };
   },
   computed: {
@@ -104,6 +105,10 @@ export default {
     spc(a, b) {
       console.log(a, b);
       const res = this.oragin.find((v) => {
+        if (v.gname === a.name || v.gname === b.name) {
+          console.log(v.gname, v.hname);
+        }
+
         return (
           (v.gname === a.name && v.hname === b.name) ||
           (v.gname === b.name && v.hname === a.name)
@@ -116,10 +121,12 @@ export default {
       return bs - as;
     },
     init(arr) {
+      this.season = arr[0].season;
       this.oragin = arr;
       // console.log(arr);
       arr.forEach((obj) => {
         if (obj.match_group == "S") {
+          console.log(obj);
           this.dataS.push(obj);
         }
         if (obj.match_group == "A") {

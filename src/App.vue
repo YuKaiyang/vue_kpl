@@ -149,5 +149,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   padding-bottom: 60px;
+  user-select: none;
 }
 </style>

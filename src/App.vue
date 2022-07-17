@@ -1,23 +1,23 @@
 <template>
   <div id="app">
     <h1>{{ season }}</h1>
-    <MySelect :list="teamS" :data="dataS" title="S组" />
-    <MySelect :list="teamA" :data="dataA" title="A组" />
+    <Group :list="teamS" :data="dataS" title="S组" />
+    <Group :list="teamA" :data="dataA" title="A组" />
     <!-- <MySelect :list="teamB" :data="dataB" title="B组" /> -->
   </div>
 </template>
 
 <script>
-import MySelect from "./components/MySelect.vue";
+import Group from "./components/Group.vue";
 
 export default {
   name: "app",
   components: {
-    MySelect,
+    Group,
   },
   created() {
     fetch(
-      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2022S1&stage=cgs3"
+      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2022S2&stage=cgs2"
     )
       .then((response) => response.json())
       .then((json) => this.init(json.data))
@@ -122,6 +122,7 @@ export default {
     },
     init(arr) {
       this.season = arr[0].season;
+      document.title = this.season;
       this.oragin = arr;
       // console.log(arr);
       arr.forEach((obj) => {

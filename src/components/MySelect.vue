@@ -1,113 +1,60 @@
 <template>
-  <div class="container">
-    <select v-model="name" v-if="list.length">
-      <option v-for="item in list" :key="item.name">{{ item.name }}</option>
-    </select>
-    <div class="rank">
-      <span>目前排名</span>
-      <span class="bold font-red">{{ rank }}</span>
+  <div class="select-container">
+    <div
+      class="item"
+      v-for="(v, i) in list"
+      :key="v"
+      :class="active === i && 'active'"
+      @click="handleClick(v, i)"
+    >
+      {{ v.name }}
     </div>
-    <List
-      :name="name"
-      :win="win"
-      :lose="lose"
-      :score="score"
-      :count="count"
-      :data="data"
-    />
   </div>
 </template>
 
 <script>
-import List from "./List.vue";
 export default {
   name: "mySelect",
-  components: {
-    List,
-  },
+  components: {},
   props: {
     list: Array,
-    data: Array,
-    title: String,
   },
   data() {
     return {
-      name: "",
+      active: 0,
     };
   },
-  computed: {
-    win() {
-      let res = 0;
-      this.list.forEach((v) => {
-        if (v.name == this.name) {
-          res = v.win;
-        }
-      });
-      return res;
-    },
-    lose() {
-      let res = 0;
-      this.list.forEach((v) => {
-        if (v.name == this.name) {
-          res = v.lose;
-        }
-      });
-      return res;
-    },
-    score() {
-      let res = 0;
-      this.list.forEach((v) => {
-        if (v.name == this.name) {
-          res = v.score;
-        }
-      });
-      return res;
-    },
-    count() {
-      let res = 0;
-      this.list.forEach((v) => {
-        if (v.name == this.name) {
-          res = v.count;
-        }
-      });
-      return res;
-    },
-    rank() {
-      let index = 0;
-      this.list.forEach((v, i) => {
-        if (v.name == this.name) {
-          index = `${this.title}第${i + 1}`;
-        }
-      });
-      return index;
-    },
-  },
-  watch: {
-    list() {
-      this.name = this.list[0].name;
+  computed: {},
+  watch: {},
+  methods: {
+    handleClick(v, i) {
+      this.active = i;
+      this.$emit("handleClick", v);
     },
   },
 };
 </script>
 
-<style scoped>
-.container {
-  max-width: 600px;
-  margin: 30px auto;
+<style  scoped>
+.select-container {
+  border: #4a69cc 1px solid;
+  border-radius: 6px;
+  margin: 41px 30px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-select {
-  width: 150px;
-  margin-bottom: 20px;
-  height: 30px;
-  line-height: 30px;
+.item {
+  padding: 12px 24px;
+  flex: 1;
 }
-.bold {
-  font-weight: bolder;
+.item:hover {
+  color: #fff;
+  background: #4a69cc;
+  cursor: pointer;
 }
-.rank {
-  margin-bottom: 20px;
-}
-.font-red {
-  color: red;
+.active {
+  color: #fff;
+  background: #4a69cc;
 }
 </style>

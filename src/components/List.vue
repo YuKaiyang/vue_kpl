@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="list">
     <div class="lists">
       <div class="line" v-for="item in list" :key="item.match_timestamp">
         <div class="time">{{ item.match_time }}</div>
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.list {
   background: linear-gradient(35deg, #ccffff, #ffcccc);
   color: #333;
   padding: 20px;

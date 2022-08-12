@@ -7,7 +7,7 @@
       :class="active === i && 'active'"
       @click="handleClick(v, i)"
     >
-      {{ v.name }}
+      {{ v.name }}: {{ v.score }}
     </div>
   </div>
 </template>

@@ -17,7 +17,7 @@ export default {
   },
   created() {
     fetch(
-      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2022S2&stage=cgs2"
+      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2022S2&stage=cgs3"
     )
       .then((response) => response.json())
       .then((json) => this.init(json.data))
@@ -121,13 +121,12 @@ export default {
       return bs - as;
     },
     init(arr) {
-      this.season = arr[0].season;
+      this.season = arr[0].season + arr[0].stage_name;
       document.title = this.season;
       this.oragin = arr;
       // console.log(arr);
       arr.forEach((obj) => {
         if (obj.match_group == "S") {
-          console.log(obj);
           this.dataS.push(obj);
         }
         if (obj.match_group == "A") {

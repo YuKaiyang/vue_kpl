@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- <h2>{{ $translate("test.hello") }}</h2> -->
     <h1>{{ season }}</h1>
     <Group :list="teamS" :data="dataS" title="S组" />
     <Group :list="teamA" :data="dataA" title="A组" />
@@ -99,25 +100,24 @@ export default {
           return b.score - a.score;
         }
       });
-      console.log(tar);
+      // console.log(tar);
       return tar;
     },
     spc(a, b) {
       console.log(a, b);
       const res = this.oragin.find((v) => {
-        if (v.gname === a.name || v.gname === b.name) {
-          console.log(v.gname, v.hname);
-        }
-
+        // if (v.gname === a.name || v.gname === b.name) {
+        //   console.log(v.gname, v.hname);
+        // }
         return (
           (v.gname === a.name && v.hname === b.name) ||
           (v.gname === b.name && v.hname === a.name)
         );
       });
-      console.log(res);
+      // console.log(res);
       const as = res.hname === a.name ? res.host_score : res.guest_score;
       const bs = res.hname === b.name ? res.host_score : res.guest_score;
-      console.log(as, bs);
+      // console.log(as, bs);
       return bs - as;
     },
     init(arr) {

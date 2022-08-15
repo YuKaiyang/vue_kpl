@@ -43,6 +43,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 .item {
   padding: 12px 24px;

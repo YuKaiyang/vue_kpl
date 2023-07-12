@@ -19,7 +19,7 @@ export default {
   },
   created() {
     fetch(
-      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2023S1&stage=cgs2"
+      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2023S2&stage=cgs2"
     )
       .then((response) => response.json())
       .then((json) => this.init(json.data))

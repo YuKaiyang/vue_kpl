@@ -4,8 +4,7 @@
     <h1>{{ season }}</h1>
     <Group :list="teamS" :data="dataS" title="S组" />
     <Group :list="teamA" :data="dataA" title="A组" />
-    <Group :list="teamB" :data="dataB" title="B组" />
-    <!-- <MySelect :list="teamB" :data="dataB" title="B组" /> -->
+    <Group v-if="dataB.length" :list="teamB" :data="dataB" title="B组" />
   </div>
 </template>
 
@@ -19,7 +18,7 @@ export default {
   },
   created() {
     fetch(
-      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2023S1&stage=cgs2"
+      "/openapi/tgabank/getSchedules?appid=10005&sign=K8tjxlHDt7HHFSJTlxxZW4A%2BalA%3D&seasonid=KPL2023S2&stage=cgs3"
     )
       .then((response) => response.json())
       .then((json) => this.init(json.data))

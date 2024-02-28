@@ -83,7 +83,7 @@ export default {
   watch: {
     list: {
       handler() {
-        this.name = this.list[0].name;
+        this.name = this.list[0]?.name;
       },
       immediate: true,
     },

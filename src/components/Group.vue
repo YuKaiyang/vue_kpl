@@ -9,14 +9,7 @@
         <span>目前排名</span>
         <span class="bold font-red">{{ rank }}</span>
       </div>
-      <List
-        :name="name"
-        :win="win"
-        :lose="lose"
-        :score="score"
-        :count="count"
-        :data="data"
-      />
+      <List :name="name" :win="win" :lose="lose" :score="score" :count="count" :data="data" />
     </div>
   </div>
 </template>
@@ -26,7 +19,6 @@ import List from "./List.vue";
 import MySelect from "./MySelect.vue";
 
 export default {
-  name: "group",
   components: {
     List,
     MySelect,
@@ -107,15 +99,19 @@ export default {
   margin: 42px auto;
   display: flex;
 }
+
 .right {
   flex: 1;
 }
+
 .bold {
   font-weight: bolder;
 }
+
 .rank {
   margin-bottom: 20px;
 }
+
 .font-red {
   color: red;
 }

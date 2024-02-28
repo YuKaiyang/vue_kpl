@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js"
+      integrity="sha512-VdqgeoWrVJcsDXFlQEKqE5MyhaIgB9yXUVaiUa8DR2J4Lr1uWcFm+ZH/YnzV5WqgKf4GPyHQ64vVLgzqGIchyw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      #main {
+        /* display: flex; */
+        width: 400px;
+        height: 200px;
+        position: absolute;
+        right: 20px;
+        top: 100px;
+      }
+      #main > div {
+        width: 50%;
+        height: 100%;
+        float: left;
+      }
+
+      .test {
+        height: 100px;
+        background: gray;
+      }
+
+      @media screen and (max-width: 1200px) {
+        .test {
+          background: #ff0000;
+        }
+      }
+
+      @media screen and (max-width: 900px) {
+        .test {
+          background: #000000;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        .test {
+          background: #887777;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+    <!-- <div id="main">
+      <div id="chart1"></div>
+      <div id="chart2"></div>
+    </div>
+    <div class="test"></div> -->
+  </body>
+  <script type="text/javascript">
+    var option = {
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        top: '5%',
+        left: 'center',
+        show: false
+      },
+      series: [
+        {
+          name: 'Access From',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 10,
+            borderColor: '#fff',
+            borderWidth: 2
+          },
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: 40,
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: 1048, name: 'Search Engine' },
+            { value: 735, name: 'Direct' },
+            { value: 580, name: 'Email' },
+            { value: 484, name: 'Union Ads' },
+            { value: 300, name: 'Video Ads' }
+          ]
+        }
+      ]
+    }
+    // var chart1 = echarts.init(document.getElementById('chart1'))
+    // var chart2 = echarts.init(document.getElementById('chart2'))
+
+    // window.addEventListener('resize', function () {
+    //   chart1.resize()
+    //   chart2.resize()
+    // })
+
+    // chart1.setOption(option)
+    // chart2.setOption(option)
+  </script>
+</html>

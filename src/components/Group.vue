@@ -81,8 +81,11 @@ export default {
     },
   },
   watch: {
-    list() {
-      this.name = this.list[0].name;
+    list: {
+      handler() {
+        this.name = this.list[0].name;
+      },
+      immediate: true,
     },
   },
   methods: {

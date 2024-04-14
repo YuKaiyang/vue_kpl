@@ -1,5 +1,5 @@
 <template>
-  <div class="select-container">
+  <div class="select-container" @keydown.down="handleDown" @keydown.up="handleUp" tabindex="0">
     <div class="item" v-for="(v, i) in list" :key="v" :class="active === i && 'active'" @click="handleClick(v, i)">
       {{ v.name }}: {{ v.score }}-{{ v.score2 }}
     </div>
@@ -10,6 +10,7 @@
 export default {
   name: "mySelect",
   components: {},
+  emits: ['handleClick', 'handleDown', 'handleUp'],
   props: {
     list: Array,
   },
@@ -18,9 +19,7 @@ export default {
       active: 0,
     };
   },
-  mounted() {
-    // console.log(this.list)
-  },
+  mounted() { },
   computed: {},
   watch: {},
   methods: {
@@ -28,11 +27,24 @@ export default {
       this.active = i;
       this.$emit("handleClick", v);
     },
+    handleDown() {
+      const len = this.list.length - 1
+      if (this.active < len) {
+        this.active++
+        this.$emit("handleClick", this.list[this.active]);
+      }
+    },
+    handleUp() {
+      if (this.active !== 0) {
+        this.active--;
+        this.$emit("handleClick", this.list[this.active]);
+      }
+    },
   },
 };
 </script>
 
-<style  scoped>
+<style scoped>
 .select-container {
   border: #4a69cc 1px solid;
   border-radius: 6px;
@@ -42,6 +54,7 @@ export default {
   justify-content: space-between;
   overflow: hidden;
   width: 162px;
+  outline: none;
 }
 
 .item {
